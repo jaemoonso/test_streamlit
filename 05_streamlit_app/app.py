@@ -146,6 +146,8 @@ def _inverse_target(y: np.ndarray, mode: str) -> np.ndarray:
 
 @st.cache_data
 def load_model_frame(sample_rows: int = 50000) -> pd.DataFrame:
+    if not DATA_PATH.exists():
+        return pd.DataFrame()
     raw = load_raw_data(DATA_PATH)
     parsed = parse_mining_dataframe(raw)
     base = build_training_table(parsed, target_col=TARGET_COL)
@@ -158,6 +160,11 @@ def load_model_frame(sample_rows: int = 50000) -> pd.DataFrame:
 @st.cache_data
 def fit_best_model_and_extract_features(best_exp_id: str) -> tuple[Pipeline, pd.DataFrame, pd.Series, pd.DataFrame, pd.Series]:
     frame = load_model_frame(sample_rows=60000)
+    if frame.empty:
+        raise FileNotFoundError(
+            f"Raw dataset not found at `{DATA_PATH}`. "
+            "Tabs 2/3 require source data to retrain local explainer models."
+        )
     split = int(len(frame) * 0.8)
     train_df = frame.iloc[:split].reset_index(drop=True)
     test_df = frame.iloc[split:].reset_index(drop=True)
@@ -314,96 +321,116 @@ def main() -> None:
 
     with tab2:
         st.subheader("Feature Importance + 심화 EDA")
-        fi = compute_feature_importance(best_exp_id)
-        top_k = st.slider("중요 변수 개수", min_value=5, max_value=20, value=10, step=1)
-        st.dataframe(fi.head(30), use_container_width=True)
-
-        fig_fi = px.bar(
-            fi.head(top_k).sort_values("importance_mean"),
-            x="importance_mean",
-            y="feature",
-            orientation="h",
-            title="Top Feature Importance (Permutation)",
-        )
-        st.plotly_chart(fig_fi, use_container_width=True)
-
-        frame = load_model_frame(sample_rows=50000)
-        stat_df = compute_important_vs_unimportant_stats(frame, fi, top_k=top_k)
-        st.markdown("#### 중요/비중요 변수의 통계적 차이 (High target vs Low target)")
-        st.dataframe(stat_df.head(40), use_container_width=True, height=300)
-
-        corr_target = (
-            frame[[c for c in frame.columns if c != "date"]]
-            .corr(numeric_only=True)[TARGET_COL]
-            .drop(TARGET_COL, errors="ignore")
-            .sort_values(key=lambda s: s.abs(), ascending=False)
-        )
-        selected = corr_target.head(top_k).index.tolist()
-        heat_df = frame[selected + [TARGET_COL]].corr(numeric_only=True)
-        fig_heat = go.Figure(
-            data=go.Heatmap(
-                z=heat_df.values,
-                x=heat_df.columns,
-                y=heat_df.index,
-                colorscale="RdBu",
-                zmid=0,
+        try:
+            fi = compute_feature_importance(best_exp_id)
+        except FileNotFoundError as e:
+            st.warning(
+                "배포 환경에 원본 데이터(`00_data/...csv`)가 없어 탭2 분석을 실행할 수 없습니다. "
+                "로컬에서는 정상 동작하며, 배포에서도 사용하려면 샘플 데이터 포함 또는 원격 다운로드 로직이 필요합니다."
             )
-        )
-        fig_heat.update_layout(title="Top Features Correlation Heatmap")
-        st.plotly_chart(fig_heat, use_container_width=True)
+            st.code(str(e))
+            fi = pd.DataFrame()
 
-        st.info("현재는 딥러닝 모델이 아니므로 GradCAM 대신 Feature Importance 기반 해석을 제공합니다.")
+        if fi.empty:
+            st.info("탭2는 데이터 소스가 준비되면 자동으로 활성화됩니다.")
+        else:
+            top_k = st.slider("중요 변수 개수", min_value=5, max_value=20, value=10, step=1)
+            st.dataframe(fi.head(30), use_container_width=True)
+
+            fig_fi = px.bar(
+                fi.head(top_k).sort_values("importance_mean"),
+                x="importance_mean",
+                y="feature",
+                orientation="h",
+                title="Top Feature Importance (Permutation)",
+            )
+            st.plotly_chart(fig_fi, use_container_width=True)
+
+            frame = load_model_frame(sample_rows=50000)
+            stat_df = compute_important_vs_unimportant_stats(frame, fi, top_k=top_k)
+            st.markdown("#### 중요/비중요 변수의 통계적 차이 (High target vs Low target)")
+            st.dataframe(stat_df.head(40), use_container_width=True, height=300)
+
+            corr_target = (
+                frame[[c for c in frame.columns if c != "date"]]
+                .corr(numeric_only=True)[TARGET_COL]
+                .drop(TARGET_COL, errors="ignore")
+                .sort_values(key=lambda s: s.abs(), ascending=False)
+            )
+            selected = corr_target.head(top_k).index.tolist()
+            heat_df = frame[selected + [TARGET_COL]].corr(numeric_only=True)
+            fig_heat = go.Figure(
+                data=go.Heatmap(
+                    z=heat_df.values,
+                    x=heat_df.columns,
+                    y=heat_df.index,
+                    colorscale="RdBu",
+                    zmid=0,
+                )
+            )
+            fig_heat.update_layout(title="Top Features Correlation Heatmap")
+            st.plotly_chart(fig_heat, use_container_width=True)
+
+            st.info("현재는 딥러닝 모델이 아니므로 GradCAM 대신 Feature Importance 기반 해석을 제공합니다.")
 
     with tab3:
         st.subheader("오분석 케이스 심화 분석")
         threshold = st.number_input("품질 임계치 (% Silica Concentrate)", value=3.0, step=0.1)
-        err, merged_err = build_error_case_view(best_exp_id=best_exp_id, threshold=threshold)
-        st.write(f"전체 테스트 샘플: `{len(err):,}`")
-        st.write(f"임계치 기준 오판정 케이스: `{int(merged_err['is_threshold_miss'].sum()):,}`")
+        try:
+            err, merged_err = build_error_case_view(best_exp_id=best_exp_id, threshold=threshold)
+            st.write(f"전체 테스트 샘플: `{len(err):,}`")
+            st.write(f"임계치 기준 오판정 케이스: `{int(merged_err['is_threshold_miss'].sum()):,}`")
 
-        fig_err = px.histogram(err, x="abs_error", nbins=60, title="Absolute Error Distribution")
-        st.plotly_chart(fig_err, use_container_width=True)
+            fig_err = px.histogram(err, x="abs_error", nbins=60, title="Absolute Error Distribution")
+            st.plotly_chart(fig_err, use_container_width=True)
 
-        near_df = merged_err[merged_err["near_threshold_miss"]].copy().head(100)
-        large_df = merged_err[merged_err["large_margin_error"]].copy().head(100)
-        suspect_df = merged_err[merged_err["possible_label_issue"]].copy().head(50)
+            near_df = merged_err[merged_err["near_threshold_miss"]].copy().head(100)
+            large_df = merged_err[merged_err["large_margin_error"]].copy().head(100)
+            suspect_df = merged_err[merged_err["possible_label_issue"]].copy().head(50)
 
-        st.markdown("#### 아쉽게 틀린 케이스 (임계치 근처 오판정)")
-        st.dataframe(near_df[["actual", "pred", "abs_error"]], use_container_width=True, height=220)
-        st.markdown("#### 크게 틀린 케이스 (상위 5% 오류)")
-        st.dataframe(large_df[["actual", "pred", "abs_error"]], use_container_width=True, height=220)
-        st.markdown("#### 라벨링 의심 케이스 (휴리스틱)")
-        st.dataframe(suspect_df[["actual", "pred", "abs_error"]], use_container_width=True, height=220)
+            st.markdown("#### 아쉽게 틀린 케이스 (임계치 근처 오판정)")
+            st.dataframe(near_df[["actual", "pred", "abs_error"]], use_container_width=True, height=220)
+            st.markdown("#### 크게 틀린 케이스 (상위 5% 오류)")
+            st.dataframe(large_df[["actual", "pred", "abs_error"]], use_container_width=True, height=220)
+            st.markdown("#### 라벨링 의심 케이스 (휴리스틱)")
+            st.dataframe(suspect_df[["actual", "pred", "abs_error"]], use_container_width=True, height=220)
 
-        if len(near_df) > 20 and len(large_df) > 20:
-            compare_feats = [c for c in merged_err.columns if c not in {"actual", "pred", "abs_error", "is_threshold_miss", "near_threshold_miss", "large_margin_error", "possible_label_issue"}]
-            compare_feats = compare_feats[:20]
-            rows = []
-            for f in compare_feats:
-                a = near_df[f].dropna()
-                b = large_df[f].dropna()
-                if len(a) < 10 or len(b) < 10:
-                    continue
-                p = mannwhitneyu(a, b, alternative="two-sided").pvalue
-                rows.append(
-                    {
-                        "feature": f,
-                        "near_median": float(a.median()),
-                        "large_median": float(b.median()),
-                        "pvalue": float(p),
-                    }
-                )
-            cmp_df = pd.DataFrame(rows).sort_values("pvalue").head(15)
-            st.markdown("#### Near-miss vs Large-error 차이 변수")
-            st.dataframe(cmp_df, use_container_width=True)
+            if len(near_df) > 20 and len(large_df) > 20:
+                compare_feats = [c for c in merged_err.columns if c not in {"actual", "pred", "abs_error", "is_threshold_miss", "near_threshold_miss", "large_margin_error", "possible_label_issue"}]
+                compare_feats = compare_feats[:20]
+                rows = []
+                for f in compare_feats:
+                    a = near_df[f].dropna()
+                    b = large_df[f].dropna()
+                    if len(a) < 10 or len(b) < 10:
+                        continue
+                    p = mannwhitneyu(a, b, alternative="two-sided").pvalue
+                    rows.append(
+                        {
+                            "feature": f,
+                            "near_median": float(a.median()),
+                            "large_median": float(b.median()),
+                            "pvalue": float(p),
+                        }
+                    )
+                cmp_df = pd.DataFrame(rows).sort_values("pvalue").head(15)
+                st.markdown("#### Near-miss vs Large-error 차이 변수")
+                st.dataframe(cmp_df, use_container_width=True)
 
-        st.markdown("### 모델 고도화 아이디어 (추가 인사이트 기반)")
-        st.markdown(
-            "- 임계치 주변 샘플에 가중치를 주는 목적함수(quality-aware loss) 적용\n"
-            "- Near-miss 전용 2단계 보정 모델(calibration regressor) 추가\n"
-            "- 라벨링 의심 케이스를 전문가 검수 후 재학습 데이터 정제\n"
-            "- 중요 변수의 drift 모니터링을 대시보드에 추가하여 운영 안정성 강화"
-        )
+            st.markdown("### 모델 고도화 아이디어 (추가 인사이트 기반)")
+            st.markdown(
+                "- 임계치 주변 샘플에 가중치를 주는 목적함수(quality-aware loss) 적용\n"
+                "- Near-miss 전용 2단계 보정 모델(calibration regressor) 추가\n"
+                "- 라벨링 의심 케이스를 전문가 검수 후 재학습 데이터 정제\n"
+                "- 중요 변수의 drift 모니터링을 대시보드에 추가하여 운영 안정성 강화"
+            )
+        except FileNotFoundError as e:
+            st.warning(
+                "배포 환경에 원본 데이터(`00_data/...csv`)가 없어 탭3 분석을 실행할 수 없습니다. "
+                "원본 데이터 접근이 가능해야 실패 케이스 재구성이 가능합니다."
+            )
+            st.code(str(e))
+            st.info("탭1(실험 결과)은 기존 리포트 파일만으로 계속 확인 가능합니다.")
 
 
 if __name__ == "__main__":
