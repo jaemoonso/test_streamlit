@@ -1,0 +1,6 @@
+{
+  "best_exp_id": "model=random_forest|params=n_estimators=40,max_depth=8,min_samples_leaf=2|impute=median|outlier=none|sampling=none|scale=True|target_transform=log1p",
+  "best_run_name": "rf_ts_tiny_log1p",
+  "best_test_rmse": 0.3744791544351207,
+  "best_cv_rmse": 0.8408584225151831
+}

@@ -1,0 +1,21 @@
+group,feature,pvalue,median_diff_high_vs_low_target
+important,dayofweek_lag_3,0.0,-1.0
+important,dayofweek_roll_mean_3,0.0,-1.0
+important,% Silica Feed_lag_1,0.0,0.14000000000000057
+important,Ore Pulp Density,3.0620103315010264e-119,-0.009310000000000151
+important,Ore Pulp Density_roll_mean_3,1.6784903800191125e-118,-0.009228333333333172
+important,Flotation Column 05 Air Flow_roll_mean_3,2.7448458453420144e-48,-0.8086601491500005
+important,Flotation Column 05 Air Flow,1.1246413022837291e-45,-0.9805760326499353
+important,Flotation Column 04 Air Flow_roll_mean_3,4.154562609785997e-26,-0.2474809314166464
+important,Flotation Column 04 Air Flow,2.422369820873511e-24,-0.22592390139999452
+important,Flotation Column 03 Level,9.122064249314056e-08,2.80600000000004
+less_important,dayofweek_lag_1,0.0,-1.0
+less_important,% Silica Feed,0.0,0.14000000000000057
+less_important,Ore Pulp pH_lag_1,0.0,-0.18400499999999909
+less_important,hour_lag_1,0.0,-5.0
+less_important,Ore Pulp pH_roll_mean_3,0.0,-0.18233361304999995
+less_important,hour_lag_3,0.0,-5.0
+less_important,Ore Pulp pH,0.0,-0.18368000000000073
+less_important,hour_roll_mean_3,0.0,-5.0
+less_important,hour,0.0,-5.0
+less_important,Amina Flow_roll_mean_3,4.032867315878481e-16,0.08233333333350856

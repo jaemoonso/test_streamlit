@@ -1,0 +1,116 @@
+feature,importance_mean,importance_std
+dayofweek_lag_3,0.00273657001337928,0.0001911107099710376
+Flotation Column 04 Air Flow,0.0018407334172342083,0.00020607358885970888
+dayofweek_roll_mean_3,0.0014612882903147107,5.406053585995385e-05
+Flotation Column 05 Air Flow,0.00134734239280494,0.00023024191778591832
+Flotation Column 04 Air Flow_roll_mean_3,0.0005518692170373374,8.019399018820631e-05
+% Silica Feed_lag_1,0.00037284127510028853,3.343072330268546e-05
+Flotation Column 03 Level,0.0003646510058411323,5.023136370187682e-05
+Ore Pulp Density,0.00030562049393165756,2.96662449965103e-05
+Ore Pulp Density_roll_mean_3,0.0002926094797304213,3.14672113051186e-05
+Flotation Column 05 Air Flow_roll_mean_3,0.00024851489060697676,6.213093059797092e-05
+Flotation Column 05 Air Flow_lag_3,0.0002425790625682378,6.71465115487912e-05
+Flotation Column 03 Level_lag_1,0.00019116260777791717,4.255454717452199e-05
+Flotation Column 03 Level_lag_3,0.00016068410948717472,3.27894937780301e-05
+Flotation Column 05 Air Flow_lag_1,0.00015533448153490781,8.138074562922303e-05
+Flotation Column 05 Level_roll_mean_3,0.00014469711514881746,1.7468888165644203e-05
+Flotation Column 04 Air Flow_lag_3,0.0001364692066932349,2.2294847794395596e-05
+% Iron Feed_roll_mean_3,3.826358006104868e-05,3.132918483075552e-05
+Ore Pulp Density_lag_3,2.4911329601762234e-05,2.456437614941234e-05
+Flotation Column 01 Level_roll_mean_3,2.1983477005127484e-05,4.268434585865608e-06
+Flotation Column 01 Level,1.4133991811560165e-05,4.404246815123173e-06
+Flotation Column 02 Level_lag_1,1.205171087228507e-05,4.627437940919871e-06
+Flotation Column 04 Level_lag_1,1.068233324041934e-05,7.086528337304719e-07
+Starch Flow_lag_1,9.545907669217257e-07,2.836261821953159e-07
+Flotation Column 01 Level_lag_1,4.959762187173312e-07,6.575486595943632e-07
+Flotation Column 07 Level,2.1694779368530702e-07,4.338955873706141e-07
+Flotation Column 02 Level_roll_mean_3,1.113110358108571e-07,7.147181797124347e-07
+Flotation Column 06 Air Flow_lag_3,0.0,0.0
+Flotation Column 07 Air Flow_lag_1,0.0,0.0
+Flotation Column 01 Air Flow_lag_3,0.0,0.0
+Flotation Column 01 Air Flow_lag_1,0.0,0.0
+Flotation Column 07 Air Flow_lag_3,0.0,0.0
+Flotation Column 03 Air Flow_lag_3,0.0,0.0
+Amina Flow_lag_1,0.0,0.0
+% Silica Feed_roll_std_3,0.0,0.0
+Ore Pulp Flow_roll_std_3,0.0,0.0
+Flotation Column 06 Level_lag_1,0.0,0.0
+Flotation Column 06 Level_lag_3,0.0,0.0
+Flotation Column 02 Air Flow_lag_3,0.0,0.0
+Flotation Column 03 Air Flow_lag_1,0.0,0.0
+Starch Flow_lag_3,0.0,0.0
+Flotation Column 04 Level,0.0,0.0
+Flotation Column 06 Air Flow,0.0,0.0
+Flotation Column 06 Level,0.0,0.0
+Flotation Column 02 Air Flow_lag_1,0.0,0.0
+Flotation Column 05 Level,0.0,0.0
+Starch Flow,0.0,0.0
+Flotation Column 02 Level,0.0,0.0
+Flotation Column 07 Air Flow,0.0,0.0
+Flotation Column 03 Air Flow,0.0,0.0
+Flotation Column 01 Air Flow,0.0,0.0
+Flotation Column 02 Air Flow,0.0,0.0
+dayofweek_roll_std_3,0.0,0.0
+Flotation Column 07 Level_roll_std_3,0.0,0.0
+Flotation Column 07 Air Flow_roll_mean_3,0.0,0.0
+Flotation Column 03 Level_roll_std_3,0.0,0.0
+Flotation Column 04 Level_roll_std_3,0.0,0.0
+Flotation Column 04 Level_roll_mean_3,0.0,0.0
+Flotation Column 05 Level_roll_std_3,0.0,0.0
+Flotation Column 02 Level_roll_std_3,0.0,0.0
+hour_roll_std_3,0.0,0.0
+Flotation Column 07 Level_roll_mean_3,0.0,0.0
+Flotation Column 02 Air Flow_roll_mean_3,0.0,0.0
+Flotation Column 01 Air Flow_roll_std_3,0.0,0.0
+Flotation Column 03 Air Flow_roll_mean_3,0.0,0.0
+Flotation Column 02 Level_lag_3,0.0,0.0
+Flotation Column 04 Level_lag_3,0.0,0.0
+Flotation Column 05 Level_lag_3,0.0,0.0
+Flotation Column 01 Air Flow_roll_mean_3,0.0,0.0
+Flotation Column 03 Air Flow_roll_std_3,0.0,0.0
+Amina Flow_roll_std_3,0.0,0.0
+Flotation Column 01 Level_roll_std_3,0.0,0.0
+Flotation Column 06 Air Flow_roll_mean_3,0.0,0.0
+Flotation Column 06 Air Flow_roll_std_3,0.0,0.0
+Flotation Column 04 Air Flow_roll_std_3,0.0,0.0
+Flotation Column 07 Air Flow_roll_std_3,0.0,0.0
+% Iron Feed_roll_std_3,0.0,0.0
+Starch Flow_roll_std_3,0.0,0.0
+Ore Pulp Density_roll_std_3,0.0,0.0
+Flotation Column 01 Level_lag_3,-6.137217116730653e-08,2.851800238205712e-07
+Flotation Column 06 Level_roll_std_3,-1.0466699471578522e-07,2.0933398943157043e-07
+Flotation Column 05 Level_lag_1,-1.1311650456313771e-07,4.3320473737818435e-07
+Ore Pulp pH_roll_std_3,-7.208975530303973e-07,1.5962955954642323e-07
+Flotation Column 07 Level_lag_1,-9.32048125612539e-07,4.32292021592965e-07
+Ore Pulp Density_lag_1,-2.217040407703763e-06,1.251277544163891e-05
+Starch Flow_roll_mean_3,-4.414116978823657e-06,2.710324836920525e-06
+Flotation Column 06 Level_roll_mean_3,-4.602391629893177e-06,1.4728153791739356e-06
+Flotation Column 07 Level_lag_3,-5.991756358847411e-06,9.497140403825907e-07
+Flotation Column 06 Air Flow_lag_1,-7.6042332779469035e-06,3.230759918351461e-06
+Flotation Column 02 Air Flow_roll_std_3,-1.670954767747368e-05,1.1792024650098718e-05
+Ore Pulp Flow_lag_3,-1.97405595198763e-05,1.8933690546577703e-06
+Ore Pulp Flow_lag_1,-2.3541402574922542e-05,2.1309433047447902e-05
+Ore Pulp Flow,-5.5640710728965816e-05,4.0596180424737354e-06
+Flotation Column 03 Level_roll_mean_3,-6.451969571710236e-05,3.9923463293441565e-05
+Amina Flow_lag_3,-8.655066377585285e-05,1.5532503303615134e-05
+Flotation Column 04 Air Flow_lag_1,-0.00010654925379531832,1.3158294754680033e-05
+Ore Pulp pH_lag_3,-0.00018084497785344488,2.132528684380461e-05
+% Iron Feed_lag_1,-0.00040825277816955994,5.522124050281752e-05
+% Iron Feed,-0.00046335329417890314,5.874959486884387e-05
+Ore Pulp Flow_roll_mean_3,-0.0005356738275475337,8.656803172920836e-05
+Amina Flow,-0.0005839767002733698,5.31544902698046e-05
+% Iron Feed_lag_3,-0.0006330485429749011,2.8913309090339043e-05
+Flotation Column 05 Air Flow_roll_std_3,-0.0007584460544866279,8.848067979805916e-05
+% Silica Feed_lag_3,-0.0009279721417205788,0.00025580634846517807
+dayofweek,-0.0012013383328294935,4.0537949551104577e-05
+% Silica Feed_roll_mean_3,-0.0020507882270558663,0.00017296888293265352
+dayofweek_lag_1,-0.0032923885289555255,0.00014682786681621633
+% Silica Feed,-0.0036996311536335647,0.00041220003091633833
+Ore Pulp pH_lag_1,-0.0038668204099237434,0.00024334777106745187
+hour_lag_1,-0.00460883187068033,0.00013846217431260564
+Ore Pulp pH_roll_mean_3,-0.005013258390397635,0.0002778007596649745
+hour_lag_3,-0.005024609736061158,0.00021397207973056863
+Ore Pulp pH,-0.00523711899211432,0.00025374945035777353
+hour_roll_mean_3,-0.007804329134319277,0.00022874411276861646
+Amina Flow_roll_mean_3,-0.012628970744486078,0.0012710556156460696
+hour,-0.013853963771970613,0.00044460848405428096
