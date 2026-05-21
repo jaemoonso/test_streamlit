@@ -1,0 +1,12 @@
+{
+  "exp_id": "model=xgboost|params=n_estimators=80,max_depth=4,learning_rate=0.08,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=quantile_1_99|sampling=threshold_weighted|scale=False|target_transform=log1p",
+  "rmse_mean": 1.3909217744602782,
+  "rmse_std": 0.4196874790816447,
+  "mae_mean": 1.1515248137500937,
+  "mae_std": 0.38280476793972507,
+  "r2_mean": -8.087258692682719,
+  "r2_std": 9.665027961368926,
+  "test_rmse": 1.3690557544116513,
+  "test_mae": 1.1443194786278408,
+  "test_r2": -2.6545251227276374
+}

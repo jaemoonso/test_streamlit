@@ -1,0 +1,9 @@
+exp_id,mean_diff_rmse_vs_baseline,ttest_pvalue,wilcoxon_pvalue,is_significant_0_05
+"model=lightgbm|params=n_estimators=300,num_leaves=31,learning_rate=0.05,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=none|sampling=none|scale=False",-0.727151398239369,3.4423742324188436e-09,0.03125,True
+"model=lightgbm|params=n_estimators=300,num_leaves=31,learning_rate=0.05,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=none|sampling=undersample_major_bins|scale=False",-0.727151398239369,3.4423742324188436e-09,0.03125,True
+"model=lightgbm|params=n_estimators=300,num_leaves=31,learning_rate=0.05,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=none|sampling=undersample_major_bins|scale=True",-0.7268648816834427,4.767498914823954e-09,0.03125,True
+"model=lightgbm|params=n_estimators=300,num_leaves=31,learning_rate=0.05,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=none|sampling=none|scale=True",-0.7268648816834427,4.767498914823954e-09,0.03125,True
+"model=lightgbm|params=n_estimators=300,num_leaves=31,learning_rate=0.05,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=none|sampling=target_bin_weighted|scale=False",-0.726670558606316,4.130449047030626e-09,0.03125,True
+"model=lightgbm|params=n_estimators=300,num_leaves=31,learning_rate=0.05,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=iqr_clip|sampling=none|scale=False",-0.7265657198522901,5.575661240768164e-09,0.03125,True
+"model=lightgbm|params=n_estimators=300,num_leaves=31,learning_rate=0.05,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=none|sampling=target_bin_weighted|scale=True",-0.7265145371044447,4.134940030247138e-09,0.03125,True
+model=ridge|params=alpha=1.0|impute=median|outlier=none|sampling=none|scale=True,0.0,1.0,1.0,False

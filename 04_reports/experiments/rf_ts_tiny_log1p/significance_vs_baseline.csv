@@ -1,0 +1,4 @@
+exp_id,mean_diff_rmse_vs_baseline,ttest_pvalue,wilcoxon_pvalue,is_significant_0_05
+"model=random_forest|params=n_estimators=40,max_depth=8,min_samples_leaf=2|impute=median|outlier=none|sampling=none|scale=True|target_transform=log1p",-2.976796124574487,0.17392746460224828,0.15625,False
+"model=random_forest|params=n_estimators=40,max_depth=8,min_samples_leaf=2|impute=median|outlier=none|sampling=none|scale=False|target_transform=log1p",-2.968758519126694,0.17465984732370604,0.15625,False
+model=ridge|params=alpha=1.0|impute=median|outlier=none|sampling=none|scale=True|target_transform=log1p,0.0,1.0,1.0,False

@@ -1,0 +1,3 @@
+exp_id,mean_diff_rmse_vs_baseline,ttest_pvalue,wilcoxon_pvalue,is_significant_0_05
+"model=random_forest|params=n_estimators=40,max_depth=8,min_samples_leaf=2|impute=median|outlier=none|sampling=none|scale=False",-0.38891271876236344,6.760704907263888e-08,0.03125,True
+model=ridge|params=alpha=1.0|impute=median|outlier=none|sampling=none|scale=True,0.0,1.0,1.0,False

@@ -1,0 +1,12 @@
+{
+  "exp_id": "model=random_forest|params=n_estimators=40,max_depth=8,min_samples_leaf=2|impute=median|outlier=none|sampling=none|scale=True|target_transform=log1p",
+  "rmse_mean": 0.8408584225151831,
+  "rmse_std": 0.49989320603877013,
+  "mae_mean": 0.7173013393015215,
+  "mae_std": 0.4310275665443319,
+  "r2_mean": -1.7921521244344611,
+  "r2_std": 1.7959470107860762,
+  "test_rmse": 0.3744791544351207,
+  "test_mae": 0.31349633027825574,
+  "test_r2": 0.20005768711374683
+}

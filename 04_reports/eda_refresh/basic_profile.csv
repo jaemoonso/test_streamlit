@@ -1,0 +1,9 @@
+metric,value
+rows,737453
+columns,25
+start_date,2017-03-10 01:00:00
+end_date,2017-09-09 23:00:00
+target_mean,2.3267632513529675
+target_std,1.1255535947546034
+target_min,0.6
+target_max,5.53

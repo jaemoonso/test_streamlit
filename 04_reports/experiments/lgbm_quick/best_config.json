@@ -1,0 +1,12 @@
+{
+  "exp_id": "model=lightgbm|params=n_estimators=80,num_leaves=31,learning_rate=0.08,subsample=0.9,colsample_bytree=0.9|impute=median|outlier=none|sampling=none|scale=False",
+  "rmse_mean": 0.04369657492284068,
+  "rmse_std": 0.002987242413785879,
+  "mae_mean": 0.023025151662369847,
+  "mae_std": 0.0008045874393756172,
+  "r2_mean": 0.9978103509623978,
+  "r2_std": 0.00031822573158888945,
+  "test_rmse": 1.0847753408326135,
+  "test_mae": 0.9710515783372259,
+  "test_r2": -3.996328779656385
+}

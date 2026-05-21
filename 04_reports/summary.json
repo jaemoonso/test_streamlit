@@ -1,0 +1,5 @@
+{
+  "target": "% Silica Concentrate",
+  "best_model_test": "random_forest",
+  "best_model_test_rmse": 0.4948664974430306
+}

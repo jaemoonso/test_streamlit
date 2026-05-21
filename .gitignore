@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Env / secrets
+.env
+.env.*
+.env.txt
+.kaggle/
+
+# Local runtime artifacts
+.streamlit/
+03_models/
+04_reports/experiments/**/oof_predictions.csv
+04_reports/experiments/**/test_predictions.csv
+04_reports/experiments/oof_predictions.csv
+04_reports/experiments/test_predictions.csv
+
+# Large raw data (do not version)
+00_data/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+screenshot *.png

@@ -1,0 +1,12 @@
+{
+  "exp_id": "model=ridge|params=alpha=0.1|impute=knn|outlier=quantile_1_99|sampling=none|scale=True",
+  "rmse_mean": 0.9401416873227518,
+  "rmse_std": 0.006293460639739116,
+  "mae_mean": 0.7657204216772526,
+  "mae_std": 0.006563312840877949,
+  "r2_mean": 0.42636287357587577,
+  "r2_std": 0.008168327762578103,
+  "test_rmse": 1.2457144406237997,
+  "test_mae": 1.0551952972707173,
+  "test_r2": -3.403689765429111
+}
